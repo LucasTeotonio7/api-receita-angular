@@ -1,33 +1,45 @@
-<mat-toolbar class="mat-elevation-z3">
+<mat-toolbar class="header mat-elevation-z3">
 
     <span class="title-group">
-        <img src="assets/images/icon-receita.png" alt="logo-receita">
+        <img src="assets/images/receita-federal-logo-1.png" alt="logo-receita">
     </span>
 
     <ul class="menu">
         <li>
-            <a href="#">
+            <a href="https://github.com/LucasTeotonio7/api-receita-angular" target="_blank">
                 <img src="assets/images/github.png" alt="github">
                 <label>Código Fonte</label>
             </a>
         </li>
         <li>
-            <a href="#">Sobre Api</a>
+            <a href="https://www.receitaws.com.br/api" target="_blank">Sobre Api</a>
         </li>
     </ul>
 </mat-toolbar>
 
-<mat-card>
+<section class="content-form">
     <mat-card-title>
-        Consulta de CNPJ
+        CONSULTA DE CNPJ
     </mat-card-title>
-    <form>
-        <mat-form-field>
-            <input matInput placeholder="Pesquisar" name="pesquisa">
+    <form class="form">
+
+        <mat-form-field appearance="outline">
+            <mat-label>CNPJ</mat-label>
+            <input matInput placeholder="Informe o CNPJ" autocomplete="off" mask="00.000.000/0000-00">
         </mat-form-field>
 
-        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+        <button mat-icon-button aria-label="search-button" (click)="openDialog()">
             <mat-icon>search</mat-icon>
         </button>
     </form>
-</mat-card>
+</section>
+
+<mat-toolbar class="footer">
+    <i class="material-icons v-middle">
+        code
+    </i>
+    <span>
+        Desenvolvido por <a href="https://www.linkedin.com/in/lucas-teotonio-25b2571a0/" target="_blank">Lucas Teotonio</a>
+    </span>
+
+</mat-toolbar>
