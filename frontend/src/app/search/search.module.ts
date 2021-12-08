@@ -1,4 +1,4 @@
-//Angular Imports
+// Angular Imports
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -9,11 +9,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
 
-//My components
+// My components
 import { SearchComponent } from './search.component';
 
-
+// Third party imports
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
 
 @NgModule({
   declarations: [
@@ -29,6 +34,8 @@ import { SearchComponent } from './search.component';
     MatButtonModule,
     MatIconModule,
     HttpClientModule,
+    MatDialogModule,
+    NgxMaskModule.forRoot(maskConfig),
   ],
   exports: [SearchComponent]
 })
