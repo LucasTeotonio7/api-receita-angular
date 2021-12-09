@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchService } from '../search/services/search.service';
 
 @Component({
   selector: 'app-cnpj-detail',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CnpjDetailComponent implements OnInit {
 
-  constructor() { }
+  cnpj: any = {}
+
+  constructor(private SearchService:SearchService) {}
 
   ngOnInit(): void {
+    // this.SearchService.getCNPJ('06990590000123').subscribe(data=>{
+    //   this.cnpj = data;
+    //   console.log(data, this.cnpj)
+    // })
   }
 
 }
