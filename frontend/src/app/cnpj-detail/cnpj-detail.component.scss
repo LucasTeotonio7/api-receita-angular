@@ -1,18 +1,13 @@
-.content{
+.container{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
 }
 
 table{
     margin-top: 10px;
     width: 60%;
-
-    // tr{
-    //     background-color: aquamarine;
-    // }
 
     th{
         background-color: #f9fafb;
@@ -25,6 +20,5 @@ table{
         padding-left: 14px;
         background-color: e2e1e1;
     }
-
 
 }
