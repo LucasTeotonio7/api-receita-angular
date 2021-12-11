@@ -1,24 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Readex+Pro&display=swap');
+
 .container{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 20px !important;
 }
 
 table{
     margin-top: 10px;
-    width: 60%;
+    width: 100%;
+    border: 1px solid #c2c1c1;
+    font-family: "Kanit";
+    border-spacing: 0;
+    border-radius: 3px;
 
-    th{
-        background-color: #f9fafb;
-        border: 1px solid #e2e1e1;
-        padding: 5px 0;
-        border-radius: 4px;
+    thead{
+        background-color: #e9ecef;
+        color: #212529;
+
+        th{
+            padding: 5px 0;
+            border-right: 1px solid #bbb9b9;
+            border-bottom: 1px solid #bbb9b9;
+
+            &:last-child{
+                border-right:none;
+            }
+        }
     }
 
     td{
-        padding-left: 14px;
+        padding: 10px 0 0 14px;
         background-color: e2e1e1;
+        border-right: 1px solid #bbb9b9;
+
+        &:last-child{
+            border-right:none;
+        }
     }
 
 }
