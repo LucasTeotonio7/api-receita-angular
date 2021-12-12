@@ -1,9 +1,11 @@
+<!-- FIXME: unify some tables -->
 <div class="container">
 
     <h1>
         Dados da empresa
     </h1>
 
+    <!-- table: update data -->
     <table>
       <thead>
         <tr>
@@ -12,11 +14,12 @@
       </thead>
       <tbody>
         <tr>
-          <td>10 de Dezembro de 2021 às 11:21:54 - 9 horas atrás</td>
+          <td>{{ cnpj.ultima_atualizacao }}</td>
         </tr>
       </tbody>
     </table>
 
+    <!-- table: inscription -->
     <table>
       <thead>
         <tr>
@@ -26,25 +29,28 @@
       </thead>
       <tbody>
         <tr>
-          <td>06.990.590/0001-23 - MATRIZ</td>
-          <td>01/09/2004 - 17 anos atrás</td>
+          <td>{{ cnpj.numero }}</td>
+          <td>{{ cnpj.abertura }}</td>
         </tr>
       </tbody>
     </table>
 
+    <!-- table: corporate name -->
     <table>
       <thead>
         <tr>
-          <th>Nome Empresarial</th>
+          <th>Razão Social</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>GOOGLE BRASIL INTERNET LTDA.</td>
+          <td>{{ cnpj.nome }}</td>
         </tr>
       </tbody>
     </table>
 
+
+    <!-- table: primary economic activities -->
     <table>
       <thead>
         <tr>
@@ -56,13 +62,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>63.19-4-00</td>
-          <td>Portais, provedores de conteúdo e outros serviços de informação na internet</td>
+        <tr *ngFor="let atividade of cnpj.atividade_principal">
+          <td>{{ atividade.code }}</td>
+          <td>{{ atividade.text }}</td>
         </tr>
       </tbody>
     </table>
 
+    <!-- table: secondary economic activities -->
     <table>
       <thead>
         <tr>
@@ -74,33 +81,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>73.19-0-04</td>
-          <td>Consultoria em publicidade</td>
-        </tr>
-        <tr>
-          <td>47.51-2-01</td>
-          <td>Comércio varejista especializado de equipamentos e suprimentos de informática</td>
-        </tr>
-        <tr>
-          <td>62.02-3-00</td>
-          <td>Desenvolvimento e licenciamento de programas de computador customizáveis</td>
-        </tr>
-        <tr>
-          <td>62.01-5-01</td>
-          <td>Desenvolvimento de programas de computador sob encomenda</td>
-        </tr>
-        <tr>
-          <td>63.11-9-00</td>
-          <td>Tratamento de dados, provedores de serviços de aplicação e serviços de hospedagem na internet</td>
-        </tr>
-        <tr>
-          <td>64.62-0-00</td>
-          <td>Holdings de instituições não-financeiras</td>
+        <tr *ngFor="let atividade of cnpj.atividades_secundarias">
+          <td>{{ atividade.code }}</td>
+          <td>{{ atividade.text }}</td>
         </tr>
       </tbody>
     </table>
 
+    <!-- table: legal nature -->
     <table>
       <thead>
         <tr>
@@ -109,11 +97,12 @@
       </thead>
       <tbody>
         <tr>
-          <td>206-2 - Sociedade Empresária Limitada</td>
+          <td>{{ cnpj.natureza_juridica }}</td>
         </tr>
       </tbody>
     </table>
 
+    <!-- table: address part 1 -->
     <table>
       <thead>
         <tr>
@@ -124,13 +113,14 @@
       </thead>
       <tbody>
         <tr>
-          <td>AV BRIG FARIA LIMA</td>
-          <td>3477</td>
-          <td>ANDAR 17A20 TSUL 2 17A20</td>
+          <td>{{ cnpj.logradouro }}</td>
+          <td>{{ cnpj.numero }}</td>
+          <td>{{ cnpj.complemento }}</td>
         </tr>
       </tbody>
     </table>
 
+    <!-- table: address part 2 -->
     <table>
       <thead>
         <tr>
@@ -142,14 +132,15 @@
       </thead>
       <tbody>
         <tr>
-          <td>04.538-133</td>
-          <td>ITAIM BIBI</td>
-          <td>SAO PAULO</td>
-          <td>SP</td>
+          <td>{{ cnpj.cep }}</td>
+          <td>{{ cnpj.bairro }}</td>
+          <td>{{ cnpj.municipio }}</td>
+          <td>{{ cnpj.uf }}</td>
         </tr>
       </tbody>
     </table>
 
+    <!-- table: contacts -->
     <table>
       <thead>
         <tr>
@@ -159,12 +150,13 @@
       </thead>
       <tbody>
         <tr>
-          <td>googlebrasil@google.com</td>
-          <td>(11) 2395-8400</td>
+          <td>{{ cnpj.email }}</td>
+          <td>{{ cnpj.telefone }}</td>
         </tr>
       </tbody>
     </table>
 
+    <!-- table: share capital -->
     <table>
       <thead>
         <tr>
@@ -173,45 +165,44 @@
       </thead>
       <tbody>
         <tr>
-          <td>R$ 200.000.000,00 (duzentos milhões de reais)</td>
+          <td>{{ cnpj.capital_social | currency: 'BRL' }}</td>
         </tr>
       </tbody>
     </table>
 
-    <table>
+    <!-- table: board of partners and administrators -->
+    <table *ngIf="cnpj.qsa != '' ">
       <thead>
         <tr>
           <th colspan="2">Quadro de Sócios e Administradores</th>
         </tr>
         <tr>
-          <th>Nome</th>
+          <th>Nome:</th>
           <th>Qualificação</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>GOOGLE INTERNATIONAL LLC (<strong>ESTADOS UNIDOS</strong>)</td>
-          <td>37-Sócio Pessoa Jurídica Domiciliado no Exterior</td>
-        </tr>
-        <tr>
-          <td><strong>Representante:</strong> YUN KI LEE</td>
-          <td>17-Procurador</td>
-        </tr>
-        <tr>
-          <td>GOOGLE LLC (<strong>ESTADOS UNIDOS</strong>)</td>
-          <td>37-Sócio Pessoa Jurídica Domiciliado no Exterior</td>
-        </tr>
-        <tr>
-          <td><strong>Representante:</strong> YUN KI LEE</td>
-          <td>17-Procurador</td>
-        </tr>
-        <tr>
-          <td>FABIO JOSE SILVA COELHO</td>
-          <td>05-Administrador</td>
+        <tr *ngFor="let qsa of cnpj.qsa">
+          <td>
+            {{ qsa.nome }}
+            <strong *ngIf="qsa.pais_origem">
+              ({{ qsa.pais_origem }})
+            </strong>
+            <br>
+            <p *ngIf="qsa.nome_rep_legal">
+              <strong>Representante: </strong> {{ qsa.nome_rep_legal }}
+            </p>
+          </td>
+          <td>{{ qsa.qual }}<br>
+            <p *ngIf="qsa.qual_rep_legal">
+              {{ qsa.qual_rep_legal }}
+            </p>
+          </td>
         </tr>
       </tbody>
     </table>
 
+    <!-- table: registration status -->
     <table>
       <thead>
         <tr>
@@ -221,8 +212,8 @@
       </thead>
       <tbody>
         <tr>
-          <td>ATIVA</td>
-          <td>01/09/2004 - 17 anos atrás</td>
+          <td>{{ cnpj.situacao }}</td>
+          <td>{{ cnpj.data_situacao }}</td>
         </tr>
       </tbody>
     </table>
