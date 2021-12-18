@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchService } from './services/search.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CnpjDetailComponent } from '../cnpj-detail/cnpj-detail.component';
 
@@ -10,28 +9,17 @@ import { CnpjDetailComponent } from '../cnpj-detail/cnpj-detail.component';
 })
 export class SearchComponent implements OnInit {
 
-  //TODO: remove test cnpj
-  CNPJ:string = '06990590000123';
-  // object: string = '';
+  CNPJ:string = '';
 
-  constructor(private SearchService:SearchService, public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) { }
 
-  ngOnInit(): void {
-    this.SearchService.getCNPJ(this.CNPJ).subscribe(data=>{
-      console.log(data)
-    })
-  }
+  ngOnInit(): void {}
 
   openDialog(): void {
-    const weekRef = this.dialog.open(CnpjDetailComponent, {
-      width: '500px',
+    this.dialog.open(CnpjDetailComponent, {
+      width: '60%',
+      maxHeight: '80%',
       data: this.CNPJ
-    });
-
-    weekRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      // this.object = result;
-      this.ngOnInit()
     });
   }
 

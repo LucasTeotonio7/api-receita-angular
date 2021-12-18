@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { SearchService } from '../search/services/search.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-cnpj-detail',
@@ -8,15 +9,16 @@ import { SearchService } from '../search/services/search.service';
 })
 export class CnpjDetailComponent implements OnInit {
 
-  cnpj: any = {}
+  cnpj: any = {};
 
-  constructor(private SearchService:SearchService) {}
+  constructor(private SearchService:SearchService,
+    public weekRef: MatDialogRef<CnpjDetailComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
 
   ngOnInit(): void {
-    // this.SearchService.getCNPJ('06990590000123').subscribe(data=>{
-    //   this.cnpj = data;
-    //   console.log(data, this.cnpj)
-    // })
+    this.SearchService.getCNPJ(this.data).subscribe(data=>{
+      this.cnpj = data;
+    })
   }
 
 }
