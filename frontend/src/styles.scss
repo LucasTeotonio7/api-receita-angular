@@ -19,3 +19,9 @@ body { margin: 0; font-family: "Poppins", Roboto, "Helvetica Neue", sans-serif; 
     border: 1px solid #9b9a9a;
     border-radius: 0 10px 10px 0;
 }
+
+@media (max-width: 991px){
+    .cdk-overlay-pane {
+        width: 100% !important;
+    }
+}
