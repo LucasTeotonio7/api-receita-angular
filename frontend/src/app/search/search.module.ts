@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // My components
 import { SearchComponent } from './search.component';
@@ -36,6 +37,7 @@ const maskConfig: Partial<IConfig> = {
     HttpClientModule,
     MatDialogModule,
     NgxMaskModule.forRoot(maskConfig),
+    MatSnackBarModule
   ],
   exports: [SearchComponent]
 })
