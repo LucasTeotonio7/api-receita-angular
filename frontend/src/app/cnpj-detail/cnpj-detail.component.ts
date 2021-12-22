@@ -16,9 +16,7 @@ export class CnpjDetailComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) {}
 
   ngOnInit(): void {
-    this.SearchService.getCNPJ(this.data).subscribe(data=>{
-      this.cnpj = data;
-    })
+    this.cnpj = this.data;
   }
 
 }
