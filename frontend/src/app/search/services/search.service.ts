@@ -8,7 +8,7 @@ import { MatSnackBar } from'@angular/material/snack-bar';
 })
 export class SearchService {
 
-  readonly apiUrl = "/api";
+  readonly apiUrl = "https://publica.cnpj.ws/cnpj/";
 
   constructor(private snackBar: MatSnackBar, private http:HttpClient) { }
 
