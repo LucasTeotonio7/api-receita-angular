@@ -30,7 +30,6 @@
       <thead>
         <tr>
           <th>CNPJ</th>
-          <th *ngIf="cnpj.estabelecimento.nome_fantasia">Nome Fantasia</th>
           <th>Data de Abertura</th>
           <th>Última Atualização</th>
         </tr>
@@ -38,9 +37,6 @@
       <tbody>
         <tr>
           <td>{{ cnpj.estabelecimento.cnpj }}</td>
-          <td *ngIf="cnpj.estabelecimento.nome_fantasia">
-            {{ cnpj.estabelecimento.nome_fantasia }}
-          </td>
           <td>{{ cnpj.estabelecimento.data_inicio_atividade | date: 'dd/MM/yyyy' }}</td>
           <td>{{ cnpj.atualizado_em | date: 'dd/MM/yyyy' }}</td>
         </tr>

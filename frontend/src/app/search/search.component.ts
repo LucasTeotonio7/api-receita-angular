@@ -21,8 +21,7 @@ export class SearchComponent implements OnInit {
   openDialog(): void {
     this.SearchService.getCNPJ(this.CNPJ).subscribe(data=>{
         this.dialog.open(CnpjDetailComponent, {
-          width: '60%',
-          maxHeight: '95%',
+          panelClass: "modal-cnpj-detail",
           data: data
         });
 

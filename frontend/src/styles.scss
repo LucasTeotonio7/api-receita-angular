@@ -25,3 +25,17 @@ body { margin: 0; font-family: "Poppins", Roboto, "Helvetica Neue", sans-serif; 
         width: 100% !important;
     }
 }
+
+.modal-cnpj-detail{
+    width: 60%;
+    height: 95%;
+
+    @media (max-width: 991px){
+        max-width: 95% !important;
+        height: 92% !important;
+    }
+}
+
+.mat-dialog-container{
+    padding: 5px !important;
+}
