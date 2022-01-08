@@ -5,36 +5,6 @@
         Dados da empresa
     </h1>
 
-    <!-- table: update data -->
-    <table>
-      <thead>
-        <tr>
-          <th>Última Atualização</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{ cnpj.ultima_atualizacao }}</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- table: inscription -->
-    <table>
-      <thead>
-        <tr>
-          <th>Número de Inscrição</th>
-          <th>Data de Abertura</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{ cnpj.numero }}</td>
-          <td>{{ cnpj.abertura }}</td>
-        </tr>
-      </tbody>
-    </table>
-
     <!-- table: corporate name -->
     <table>
       <thead>
@@ -44,27 +14,43 @@
       </thead>
       <tbody>
         <tr>
-          <td>{{ cnpj.nome }}</td>
+          <td>{{ cnpj.razao_social }}</td>
         </tr>
       </tbody>
     </table>
 
+    <!-- table: inscription -->
+    <table>
+      <thead>
+        <tr>
+          <th>CNPJ</th>
+          <th *ngIf="cnpj.estabelecimento.nome_fantasia">Nome Fantasia</th>
+          <th>Data de Abertura</th>
+          <th>Última Atualização</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ cnpj.estabelecimento.cnpj }}</td>
+          <td *ngIf="cnpj.estabelecimento.nome_fantasia">
+            {{ cnpj.estabelecimento.nome_fantasia }}
+          </td>
+          <td>{{ cnpj.estabelecimento.data_inicio_atividade | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ cnpj.atualizado_em | date: 'dd/MM/yyyy' }}</td>
+        </tr>
+      </tbody>
+    </table>
 
     <!-- table: primary economic activities -->
     <table>
       <thead>
         <tr>
-          <th colspan="2">Atividade Econômica Primária</th>
-        </tr>
-        <tr>
-          <th>Código</th>
-          <th>Descrição</th>
+          <th>Atividade Econômica Primária</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let atividade of cnpj.atividade_principal">
-          <td>{{ atividade.code }}</td>
-          <td>{{ atividade.text }}</td>
+        <tr>
+          <td>{{ cnpj.estabelecimento.atividade_principal.descricao }}</td>
         </tr>
       </tbody>
     </table>
@@ -81,9 +67,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let atividade of cnpj.atividades_secundarias">
-          <td>{{ atividade.code }}</td>
-          <td>{{ atividade.text }}</td>
+        <tr *ngFor="let atividade of cnpj.estabelecimento.atividades_secundarias">
+          <td>{{ atividade.id }}</td>
+          <td>{{ atividade.descricao }}</td>
         </tr>
       </tbody>
     </table>
@@ -97,7 +83,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>{{ cnpj.natureza_juridica }}</td>
+          <td>{{ cnpj.natureza_juridica.descricao }}</td>
         </tr>
       </tbody>
     </table>
@@ -113,9 +99,9 @@
       </thead>
       <tbody>
         <tr>
-          <td>{{ cnpj.logradouro }}</td>
-          <td>{{ cnpj.numero }}</td>
-          <td>{{ cnpj.complemento }}</td>
+          <td>{{ cnpj.estabelecimento.logradouro }}</td>
+          <td>{{ cnpj.estabelecimento.numero }}</td>
+          <td>{{ cnpj.estabelecimento.complemento }}</td>
         </tr>
       </tbody>
     </table>
@@ -127,15 +113,16 @@
           <th>CEP</th>
           <th>Bairro</th>
           <th>Município</th>
-          <th>UF</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>{{ cnpj.cep }}</td>
-          <td>{{ cnpj.bairro }}</td>
-          <td>{{ cnpj.municipio }}</td>
-          <td>{{ cnpj.uf }}</td>
+          <td>{{ cnpj.estabelecimento.cep }}</td>
+          <td>{{ cnpj.estabelecimento.bairro }}</td>
+          <td>
+            {{ cnpj.estabelecimento.cidade.nome }} -
+            {{ cnpj.estabelecimento.estado.sigla }}
+          </td>
         </tr>
       </tbody>
     </table>
@@ -150,8 +137,8 @@
       </thead>
       <tbody>
         <tr>
-          <td>{{ cnpj.email }}</td>
-          <td>{{ cnpj.telefone }}</td>
+          <td>{{ cnpj.estabelecimento.email }}</td>
+          <td>{{ cnpj.estabelecimento.telefone1 }}</td>
         </tr>
       </tbody>
     </table>
@@ -165,13 +152,14 @@
       </thead>
       <tbody>
         <tr>
+          <!-- <td>{{ cnpj.capital_social | currency: 'BRL' }}</td> -->
           <td>{{ cnpj.capital_social | currency: 'BRL' }}</td>
         </tr>
       </tbody>
     </table>
 
     <!-- table: board of partners and administrators -->
-    <table *ngIf="cnpj.qsa != '' ">
+    <table *ngIf="cnpj.socios != '' ">
       <thead>
         <tr>
           <th colspan="2">Quadro de Sócios e Administradores</th>
@@ -182,20 +170,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let qsa of cnpj.qsa">
+        <tr *ngFor="let socio of cnpj.socios">
           <td>
-            {{ qsa.nome }}
-            <strong *ngIf="qsa.pais_origem">
-              ({{ qsa.pais_origem }})
-            </strong>
+            {{ socio.nome }}
             <br>
-            <p *ngIf="qsa.nome_rep_legal">
-              <strong>Representante: </strong> {{ qsa.nome_rep_legal }}
+            <p *ngIf="socio.nome_representante">
+              <strong>Representante: </strong> {{ socio.nome_representante }}
             </p>
           </td>
-          <td>{{ qsa.qual }}<br>
-            <p *ngIf="qsa.qual_rep_legal">
-              {{ qsa.qual_rep_legal }}
+          <td>{{ socio.qualificacao_socio.descricao }}<br>
+            <p *ngIf="socio.qualificacao_representante">
+              {{ socio.qualificacao_representante.descricao }}
             </p>
           </td>
         </tr>
@@ -212,8 +197,8 @@
       </thead>
       <tbody>
         <tr>
-          <td>{{ cnpj.situacao }}</td>
-          <td>{{ cnpj.data_situacao }}</td>
+          <td>{{ cnpj.estabelecimento.situacao_cadastral }}</td>
+          <td>{{ cnpj.estabelecimento.data_situacao_cadastral }}</td>
         </tr>
       </tbody>
     </table>
