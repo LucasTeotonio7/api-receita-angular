@@ -19,4 +19,8 @@ export class CnpjDetailComponent implements OnInit {
     this.cnpj = this.data;
   }
 
+  closeModal(){
+    this.weekRef.close();
+  }
+
 }
