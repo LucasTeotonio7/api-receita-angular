@@ -26,7 +26,11 @@
         <mat-form-field appearance="outline">
             <mat-label>CNPJ</mat-label>
             <input matInput [(ngModel)]="CNPJ" placeholder="Informe o CNPJ"
-                autocomplete="off" mask="00.000.000/0000-00" name="cnpj">
+                autocomplete="off" minlength="14" mask="00.000.000/0000-00" name="cnpj" required>
+            <!-- <mat-hint>Tamanho máximo: {{CNPJ.length || 0}}/14</mat-hint> -->
+            <mat-error *ngIf="CNPJ.length < 14">
+                faltam {{ 14 - CNPJ.length }} dígitos
+            </mat-error>
         </mat-form-field>
 
         <button mat-icon-button aria-label="search-button" (click)="openDialog()">

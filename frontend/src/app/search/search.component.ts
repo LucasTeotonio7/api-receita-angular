@@ -19,27 +19,29 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {}
 
   openDialog(): void {
-    this.SearchService.getCNPJ(this.CNPJ).subscribe(data=>{
-        this.dialog.open(CnpjDetailComponent, {
-          panelClass: "modal-cnpj-detail",
-          data: data
-        });
+    if(this.CNPJ.length == 14){
+      this.SearchService.getCNPJ(this.CNPJ).subscribe(data=>{
+          this.dialog.open(CnpjDetailComponent, {
+            panelClass: "modal-cnpj-detail",
+            data: data
+          });
 
-    }, error=>{
+      }, error=>{
 
-      if(error.status === 400){
-        this.SearchService.errorMessage("O CNPJ informado é inválido!");
-      }
+        if(error.status === 400){
+          this.SearchService.errorMessage("O CNPJ informado é inválido!");
+        }
 
-      else if(error.status === 429){
-        this.SearchService.errorMessage("Você só pode fazer 3 requisições por minuto! Aguarde um momento... ");
-      }
+        else if(error.status === 429){
+          this.SearchService.errorMessage("Você só pode fazer 3 requisições por minuto! Aguarde um momento... ");
+        }
 
-      else{
-        this.SearchService.errorMessage("Erro Interno");
-      }
+        else{
+          this.SearchService.errorMessage("Erro Interno");
+        }
 
-    })
+      })
+    }
   }
 
 }
