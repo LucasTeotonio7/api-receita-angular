@@ -4,22 +4,6 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: "Poppins", Roboto, "Helvetica Neue", sans-serif; }
 
-.cdk-overlay-pane {
-    overflow-y: scroll;
-}
-
-.cdk-overlay-pane::-webkit-scrollbar {
-    background: #e5e6e6;
-    width: 8px;
-    border-radius: 0 10px 10px 0;
-}
-
-.cdk-overlay-pane::-webkit-scrollbar-thumb {
-    background-color: #cecccc;
-    border: 1px solid #9b9a9a;
-    border-radius: 0 10px 10px 0;
-}
-
 @media (max-width: 991px){
     .cdk-overlay-pane {
         width: 100% !important;
@@ -34,8 +18,4 @@ body { margin: 0; font-family: "Poppins", Roboto, "Helvetica Neue", sans-serif; 
         max-width: 95% !important;
         height: 92% !important;
     }
-}
-
-.mat-dialog-container{
-    padding: 5px !important;
 }
