@@ -18,7 +18,7 @@ export class SearchService {
 
   errorMessage(msg: string):void{
     this.snackBar.open(msg,'X',{
-      duration: Infinity,
+      duration: 3000,
       horizontalPosition: 'right',
       verticalPosition: 'top',
       panelClass: 'msg-error',
