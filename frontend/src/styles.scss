@@ -8,6 +8,10 @@ body { margin: 0; font-family: "Poppins", Roboto, "Helvetica Neue", sans-serif; 
     .cdk-overlay-pane {
         width: 100% !important;
     }
+
+    .mat-dialog-container{
+        padding: 10px !important;
+    }
 }
 
 .modal-cnpj-detail{
